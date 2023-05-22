@@ -1,8 +1,9 @@
 import 'dart:convert' as convert;
 import 'package:flutter_axis_movil/Constants/Constants.dart';
+import 'package:flutter_axis_movil/Objects/Login/ObValidarUsuario.dart';
 import 'package:http/http.dart' as http;
 
-void main() async {
+Future<ObValidarUsuario> fetchLogin() async {
   var url = Uri.http(Constants.ipLogin, '/apiAppInfracciones/api/validarLogin',
       {'q': '{http}'});
   var body =
@@ -17,8 +18,13 @@ void main() async {
   if (response.statusCode == 200) {
     var jsonResponse =
         convert.jsonDecode(response.body) as Map<String, dynamic>;
-    print(jsonResponse);
+    ObValidarUsuario res = ObValidarUsuario.fromJson(jsonResponse);
+    return res;
   } else {
     throw Exception('Request failed with status: ${response.statusCode}.');
   }
+}
+
+void main() {
+  print(fetchLogin());
 }

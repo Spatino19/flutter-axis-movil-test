@@ -1,0 +1,112 @@
+class ObValidarUsuario {
+  String? lsIdEmpresa;
+  String? lsIdOficina;
+  int? liIdAgente;
+  String? lsNombres;
+  int? liIdSesion;
+  List<LcCatalogos>? lcCatalogos;
+  LoResultado? loResultado;
+  String? lsIdUsuario;
+
+  ObValidarUsuario(
+      {this.lsIdEmpresa,
+      this.lsIdOficina,
+      this.liIdAgente,
+      this.lsNombres,
+      this.liIdSesion,
+      this.lcCatalogos,
+      this.loResultado,
+      this.lsIdUsuario});
+
+  ObValidarUsuario.fromJson(Map<String, dynamic> json) {
+    lsIdEmpresa = json['lsIdEmpresa'];
+    lsIdOficina = json['lsIdOficina'];
+    liIdAgente = json['liIdAgente'];
+    lsNombres = json['lsNombres'];
+    liIdSesion = json['liIdSesion'];
+    if (json['lcCatalogos'] != null) {
+      lcCatalogos = <LcCatalogos>[];
+      json['lcCatalogos'].forEach((v) {
+        lcCatalogos!.add(new LcCatalogos.fromJson(v));
+      });
+    }
+    loResultado = json['loResultado'] != null
+        ? new LoResultado.fromJson(json['loResultado'])
+        : null;
+    lsIdUsuario = json['lsIdUsuario'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['lsIdEmpresa'] = this.lsIdEmpresa;
+    data['lsIdOficina'] = this.lsIdOficina;
+    data['liIdAgente'] = this.liIdAgente;
+    data['lsNombres'] = this.lsNombres;
+    data['liIdSesion'] = this.liIdSesion;
+    if (this.lcCatalogos != null) {
+      data['lcCatalogos'] = this.lcCatalogos!.map((v) => v.toJson()).toList();
+    }
+    if (this.loResultado != null) {
+      data['loResultado'] = this.loResultado!.toJson();
+    }
+    data['lsIdUsuario'] = this.lsIdUsuario;
+    return data;
+  }
+}
+
+class LcCatalogos {
+  int? liIdCatalogo;
+  String? lsDescripcion;
+  int? liOrden;
+  String? lsFechaUltModificacion;
+  String? lsObligatorio;
+  String? lsWifi;
+  int? liRegistros;
+
+  LcCatalogos(
+      {this.liIdCatalogo,
+      this.lsDescripcion,
+      this.liOrden,
+      this.lsFechaUltModificacion,
+      this.lsObligatorio,
+      this.lsWifi,
+      this.liRegistros});
+
+  LcCatalogos.fromJson(Map<String, dynamic> json) {
+    liIdCatalogo = json['liIdCatalogo'];
+    lsDescripcion = json['lsDescripcion'];
+    liOrden = json['liOrden'];
+    lsFechaUltModificacion = json['lsFechaUltModificacion'];
+    lsObligatorio = json['lsObligatorio'];
+    lsWifi = json['lsWifi'];
+    liRegistros = json['liRegistros'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['liIdCatalogo'] = this.liIdCatalogo;
+    data['lsDescripcion'] = this.lsDescripcion;
+    data['liOrden'] = this.liOrden;
+    data['lsFechaUltModificacion'] = this.lsFechaUltModificacion;
+    data['lsObligatorio'] = this.lsObligatorio;
+    data['lsWifi'] = this.lsWifi;
+    data['liRegistros'] = this.liRegistros;
+    return data;
+  }
+}
+
+class LoResultado {
+  String? lsCodError;
+
+  LoResultado({this.lsCodError});
+
+  LoResultado.fromJson(Map<String, dynamic> json) {
+    lsCodError = json['lsCodError'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['lsCodError'] = this.lsCodError;
+    return data;
+  }
+}
