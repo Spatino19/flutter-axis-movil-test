@@ -12,6 +12,7 @@ Future<ObInicioSesion> fetchLogin(String psIdUsuario, String psClave) async {
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
+
   // Await the http get response, then decode the json-formatted response.
   final response = await http.post(url, headers: headers, body: body);
 
@@ -26,5 +27,9 @@ Future<ObInicioSesion> fetchLogin(String psIdUsuario, String psClave) async {
 }
 
 void main() async {
-  print((await fetchLogin("***REMOVED***", "***REMOVED***")).lsNombres);
+  try {
+    print((await fetchLogin("***REMOVED***", "***REMOVED***")).lsNombres);
+  } on Exception catch (e) {
+    print(e);
+  }
 }
