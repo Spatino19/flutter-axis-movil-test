@@ -1,5 +1,4 @@
 import 'dart:convert' as convert;
-import 'dart:ffi';
 import 'package:flutter_axis_movil/Constants/Constants.dart';
 import 'package:flutter_axis_movil/Objects/Login/ObInicioSesion.dart';
 import 'package:http/http.dart' as http;
