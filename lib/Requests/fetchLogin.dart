@@ -3,11 +3,11 @@ import 'package:flutter_axis_movil/Constants/Constants.dart';
 import 'package:flutter_axis_movil/Objects/Login/ObInicioSesion.dart';
 import 'package:http/http.dart' as http;
 
-Future<ObInicioSesion> fetchLogin() async {
+Future<ObInicioSesion> fetchLogin(String psIdUsuario, String psClave) async {
   var url = Uri.http(Constants.ipLogin, '/apiAppInfracciones/api/validarLogin',
       {'q': '{http}'});
   var body =
-      convert.jsonEncode({"psIdUsuario": "***REMOVED***", "psClave": "***REMOVED***"});
+      convert.jsonEncode({"psIdUsuario": psIdUsuario, "psClave": psClave});
   Map<String, String> headers = {
     'Content-type': 'application/json',
     'Accept': 'application/json',
@@ -26,5 +26,5 @@ Future<ObInicioSesion> fetchLogin() async {
 }
 
 void main() async {
-  print((await fetchLogin()).lsNombres);
+  print((await fetchLogin("***REMOVED***", "***REMOVED***")).lsNombres);
 }
