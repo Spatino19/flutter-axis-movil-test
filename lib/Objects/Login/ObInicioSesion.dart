@@ -1,4 +1,4 @@
-class ObValidarUsuario {
+class ObInicioSesion {
   String? lsIdEmpresa;
   String? lsIdOficina;
   int? liIdAgente;
@@ -8,7 +8,7 @@ class ObValidarUsuario {
   LoResultado? loResultado;
   String? lsIdUsuario;
 
-  ObValidarUsuario(
+  ObInicioSesion(
       {this.lsIdEmpresa,
       this.lsIdOficina,
       this.liIdAgente,
@@ -18,7 +18,7 @@ class ObValidarUsuario {
       this.loResultado,
       this.lsIdUsuario});
 
-  ObValidarUsuario.fromJson(Map<String, dynamic> json) {
+  ObInicioSesion.fromJson(Map<String, dynamic> json) {
     lsIdEmpresa = json['lsIdEmpresa'];
     lsIdOficina = json['lsIdOficina'];
     liIdAgente = json['liIdAgente'];
