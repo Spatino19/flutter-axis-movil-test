@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_axis_movil/Requests/fetchLogin.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -354,16 +355,29 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       0.0, 16.0, 0.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
-                                                  if (_model.formKey
-                                                              .currentState ==
-                                                          null ||
-                                                      !_model
-                                                          .formKey.currentState!
-                                                          .validate()) {
-                                                    return;
+                                                  var res = await fetchLogin(
+                                                      _model
+                                                          .usuarioFieldController
+                                                          .text,
+                                                      _model
+                                                          .passwordFieldController
+                                                          .text);
+
+                                                  if (res.loResultado!
+                                                          .lsCodError ==
+                                                      '0') {
+                                                    context
+                                                        .pushNamed('HomePage');
                                                   }
 
-                                                  context.pushNamed('HomePage');
+                                                  // if (_model.formKey
+                                                  //             .currentState ==
+                                                  //         null ||
+                                                  //     !_model
+                                                  //         .formKey.currentState!
+                                                  //         .validate()) {
+                                                  //   return;
+                                                  // }
                                                 },
                                                 text: 'Ingresar',
                                                 options: FFButtonOptions(
