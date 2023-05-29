@@ -12,15 +12,35 @@ class LoginModel extends FlutterFlowModel {
   // State field(s) for UsuarioField widget.
   TextEditingController? usuarioFieldController;
   String? Function(BuildContext, String?)? usuarioFieldControllerValidator;
+  String? _usuarioFieldControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Usuario Requerido';
+    }
+
+    if (!RegExp(kTextValidatorUsernameRegex).hasMatch(val)) {
+      return 'Debe empezar por una letra y sólo puede contener letras, dígitos y "-" o "_".';
+    }
+    return null;
+  }
+
   // State field(s) for PasswordField widget.
   TextEditingController? passwordFieldController;
   late bool passwordFieldVisibility;
   String? Function(BuildContext, String?)? passwordFieldControllerValidator;
+  String? _passwordFieldControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Contraseña requerida';
+    }
+
+    return null;
+  }
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
+    usuarioFieldControllerValidator = _usuarioFieldControllerValidator;
     passwordFieldVisibility = false;
+    passwordFieldControllerValidator = _passwordFieldControllerValidator;
   }
 
   void dispose() {
@@ -29,5 +49,4 @@ class LoginModel extends FlutterFlowModel {
   }
 
   /// Additional helper methods are added here.
-
 }
