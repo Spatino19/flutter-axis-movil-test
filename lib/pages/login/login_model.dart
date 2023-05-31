@@ -18,7 +18,7 @@ class LoginModel extends FlutterFlowModel {
     }
 
     if (!RegExp(kTextValidatorUsernameRegex).hasMatch(val)) {
-      return 'Debe empezar por una letra y sólo puede contener letras, dígitos y "-" o "_".';
+      return 'Debe empezar por una letra.\nSolo puede contener letras, dígitos y "-" o "_".';
     }
     return null;
   }
