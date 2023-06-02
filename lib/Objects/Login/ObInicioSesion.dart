@@ -30,9 +30,7 @@ class ObInicioSesion {
         lcCatalogos!.add(new LcCatalogos.fromJson(v));
       });
     }
-    loResultado = json['loResultado'] != null
-        ? new LoResultado.fromJson(json['loResultado'])
-        : null;
+    loResultado = json['loResultado'] != null ? new LoResultado.fromJson(json['loResultado']) : null;
     lsIdUsuario = json['lsIdUsuario'];
   }
 
