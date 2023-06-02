@@ -280,11 +280,30 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       !_model.formKey.currentState!.validate()) {
                                                     return;
                                                   }
-                                                  var res = await fetchLogin(_model.usuarioFieldController.text,
-                                                      _model.passwordFieldController.text);
+                                                  try {
+                                                    var res = await fetchLogin(_model.usuarioFieldController.text,
+                                                        _model.passwordFieldController.text);
 
-                                                  if (res.loResultado!.lsCodError == '0') {
-                                                    context.pushNamed('HomePage');
+                                                    if (res.loResultado!.lsCodError == '0') {
+                                                      context.pushNamed('HomePage');
+                                                    } else {
+                                                      throw Exception(
+                                                          "${res.loResultado!.lsMensaje}.\n\nCodigo de error: ${res.loResultado!.lsCodError}.");
+                                                    }
+                                                  } on Exception catch (e) {
+                                                    showDialog<String>(
+                                                      context: context,
+                                                      builder: (BuildContext context) => AlertDialog(
+                                                        title: const Text('Error de Inicio de Sesión'),
+                                                        content: Text(e.toString().substring(11)),
+                                                        actions: <Widget>[
+                                                          TextButton(
+                                                            onPressed: () => Navigator.pop(context, 'OK'),
+                                                            child: const Text('OK'),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
                                                   }
                                                 },
                                                 text: 'Ingresar',

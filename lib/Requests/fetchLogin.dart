@@ -22,7 +22,7 @@ Future<ObInicioSesion> fetchLogin(String psIdUsuario, String psClave) async {
     ObInicioSesion res = ObInicioSesion.fromJson(jsonResponse);
     return res;
   } else {
-    throw Exception('Request failed with status: ${response.statusCode}.');
+    throw Exception('No se ha podido iniciar sesión. Estado ${response.statusCode}.');
   }
 }
 
