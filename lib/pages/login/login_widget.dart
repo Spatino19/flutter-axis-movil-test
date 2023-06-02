@@ -342,6 +342,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           color: FlutterFlowTheme.of(context).primary,
                                           fontWeight: FontWeight.w600,
                                         ),
+                                    // TODO: Añadir funcionalidad a cambiar contraseña
                                   )),
                                 ),
                               ],
