@@ -97,16 +97,21 @@ class LcCatalogos {
 
 class LoResultado {
   String? lsCodError;
+  String? lsMensaje;
 
-  LoResultado({this.lsCodError});
+  LoResultado({this.lsCodError, this.lsMensaje});
 
   LoResultado.fromJson(Map<String, dynamic> json) {
     lsCodError = json['lsCodError'];
+    lsMensaje = json['lsMensaje'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['lsCodError'] = this.lsCodError;
+    if (this.lsMensaje != null) {
+      data['lsMensaje'] = this.lsMensaje;
+    }
     return data;
   }
 }
