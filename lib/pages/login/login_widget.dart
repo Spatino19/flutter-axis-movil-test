@@ -288,7 +288,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   context: context,
                                                   builder: (BuildContext context) => AlertDialog(
                                                     title: const Text('Error de Inicio de Sesión'),
-                                                    content: Text(e.toString().substring(11)),
+                                                    content: Text(e.runtimeType.toString() == "_Exception"
+                                                        ? e.toString().substring(11)
+                                                        : e.toString()),
                                                     actions: <Widget>[
                                                       TextButton(
                                                         onPressed: () => Navigator.pop(context, 'OK'),
