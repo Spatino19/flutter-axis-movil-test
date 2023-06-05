@@ -281,7 +281,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   context.pushNamed('HomePage');
                                                 } else {
                                                   throw Exception(
-                                                      "${res.loResultado!.lsMensaje}.\n\nCodigo de error: ${res.loResultado!.lsCodError}.");
+                                                      "${res.loResultado!.lsMensaje}.\n\nCódigo de error: ${res.loResultado!.lsCodError}.");
                                                 }
                                               } on Exception catch (e) {
                                                 showDialog<String>(
