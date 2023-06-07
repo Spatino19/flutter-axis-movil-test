@@ -9,8 +9,7 @@ const kThemeModeKey = '__theme_mode__';
 SharedPreferences? _prefs;
 
 abstract class FlutterFlowTheme {
-  static Future initialize() async =>
-      _prefs = await SharedPreferences.getInstance();
+  static Future initialize() async => _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
     final darkMode = _prefs?.getBool(kThemeModeKey);
     return darkMode == null
@@ -20,14 +19,11 @@ abstract class FlutterFlowTheme {
             : ThemeMode.light;
   }
 
-  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
-      ? _prefs?.remove(kThemeModeKey)
-      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+  static void saveThemeMode(ThemeMode mode) =>
+      mode == ThemeMode.system ? _prefs?.remove(kThemeModeKey) : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
   static FlutterFlowTheme of(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
-        ? DarkModeTheme()
-        : LightModeTheme();
+    return Theme.of(context).brightness == Brightness.dark ? DarkModeTheme() : LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -303,7 +299,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color primaryText = const Color(0xFFFFFFFF);
   late Color secondaryText = const Color(0xFF95A1AC);
   late Color primaryBackground = const Color(0xFF1D2428);
-  late Color secondaryBackground = const Color(0xFF14181B);
+  late Color secondaryBackground = Color.fromARGB(66, 20, 24, 27);
   late Color accent1 = const Color(0x4C4B39EF);
   late Color accent2 = const Color(0x4D39D2C0);
   late Color accent3 = const Color(0x4DEE8B60);
