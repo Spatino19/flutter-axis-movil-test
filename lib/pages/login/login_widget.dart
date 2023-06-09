@@ -192,139 +192,132 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          TextFormField(
-                                            controller: _model.passwordFieldController,
-                                            obscureText: !_model.passwordFieldVisibility,
-                                            decoration: InputDecoration(
-                                              labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(context).primaryText,
-                                                    fontSize: 16,
-                                                    lineHeight: 1.5,
-                                                  ),
-                                              hintText: 'Contraseña',
-                                              hintStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xFF696E7C),
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w300,
-                                                    lineHeight: 1.5,
-                                                  ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(context).alternate,
-                                                  width: 1,
-                                                ),
-                                                borderRadius: BorderRadius.circular(8),
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                                      child: TextFormField(
+                                        controller: _model.passwordFieldController,
+                                        obscureText: !_model.passwordFieldVisibility,
+                                        decoration: InputDecoration(
+                                          labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                fontFamily: 'Readex Pro',
+                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                fontSize: 16,
+                                                lineHeight: 1.5,
                                               ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1,
-                                                ),
-                                                borderRadius: BorderRadius.circular(8),
+                                          hintText: 'Contraseña',
+                                          hintStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xFF696E7C),
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                lineHeight: 1.5,
                                               ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFFFDA29B),
-                                                  width: 1,
-                                                ),
-                                                borderRadius: BorderRadius.circular(8),
-                                              ),
-                                              focusedErrorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFFFDA29B),
-                                                  width: 1,
-                                                ),
-                                                borderRadius: BorderRadius.circular(8),
-                                              ),
-                                              contentPadding: EdgeInsetsDirectional.fromSTEB(14, 10, 14, 10),
-                                              suffixIcon: InkWell(
-                                                onTap: () => setState(
-                                                  () =>
-                                                      _model.passwordFieldVisibility = !_model.passwordFieldVisibility,
-                                                ),
-                                                focusNode: FocusNode(skipTraversal: true),
-                                                child: Icon(
-                                                  _model.passwordFieldVisibility
-                                                      ? Icons.visibility_outlined
-                                                      : Icons.visibility_off_outlined,
-                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                  size: 16,
-                                                ),
-                                              ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: FlutterFlowTheme.of(context).alternate,
+                                              width: 1,
                                             ),
-                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w300,
-                                                  lineHeight: 1.5,
-                                                ),
-                                            validator: _model.passwordFieldControllerValidator.asValidator(context),
+                                            borderRadius: BorderRadius.circular(8),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                if (_model.formKey.currentState == null ||
-                                                    !_model.formKey.currentState!.validate()) {
-                                                  return;
-                                                }
-                                                try {
-                                                  var res = await fetchLogin(_model.usuarioFieldController.text,
-                                                      _model.passwordFieldController.text);
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
+                                            ),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFFDA29B),
+                                              width: 1,
+                                            ),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          focusedErrorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFFDA29B),
+                                              width: 1,
+                                            ),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          contentPadding: EdgeInsetsDirectional.fromSTEB(14, 10, 14, 10),
+                                          suffixIcon: InkWell(
+                                            onTap: () => setState(
+                                              () => _model.passwordFieldVisibility = !_model.passwordFieldVisibility,
+                                            ),
+                                            focusNode: FocusNode(skipTraversal: true),
+                                            child: Icon(
+                                              _model.passwordFieldVisibility
+                                                  ? Icons.visibility_outlined
+                                                  : Icons.visibility_off_outlined,
+                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                              size: 16,
+                                            ),
+                                          ),
+                                        ),
+                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                              fontFamily: 'Readex Pro',
+                                              color: FlutterFlowTheme.of(context).primaryText,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w300,
+                                              lineHeight: 1.5,
+                                            ),
+                                        validator: _model.passwordFieldControllerValidator.asValidator(context),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          if (_model.formKey.currentState == null ||
+                                              !_model.formKey.currentState!.validate()) {
+                                            return;
+                                          }
+                                          try {
+                                            var res = await fetchLogin(_model.usuarioFieldController.text,
+                                                _model.passwordFieldController.text);
 
-                                                  if (res.loResultado!.lsCodError == '0') {
-                                                    context.pushNamed('HomePage');
-                                                  } else {
-                                                    throw Exception(
-                                                        "${res.loResultado!.lsMensaje}.\n\nCódigo de error: ${res.loResultado!.lsCodError}.");
-                                                  }
-                                                } on Exception catch (e) {
-                                                  showDialog<String>(
-                                                    context: context,
-                                                    builder: (BuildContext context) => AlertDialog(
-                                                      title: const Text('Error de Inicio de Sesión'),
-                                                      content: Text(e.runtimeType.toString() == "_Exception"
-                                                          ? e.toString().substring(11)
-                                                          : e.toString()),
-                                                      actions: <Widget>[
-                                                        TextButton(
-                                                          onPressed: () => Navigator.pop(context, 'OK'),
-                                                          child: const Text('OK'),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                }
-                                              },
-                                              text: 'Ingresar',
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 44,
-                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                color: Color(0xFF07539D),
-                                                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Colors.white,
-                                                    ),
-                                                elevation: 2,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
-                                                ),
-                                                borderRadius: BorderRadius.circular(8),
+                                            if (res.loResultado!.lsCodError == '0') {
+                                              context.pushNamed('HomePage');
+                                            } else {
+                                              throw Exception(
+                                                  "${res.loResultado!.lsMensaje}.\n\nCódigo de error: ${res.loResultado!.lsCodError}.");
+                                            }
+                                          } on Exception catch (e) {
+                                            showDialog<String>(
+                                              context: context,
+                                              builder: (BuildContext context) => AlertDialog(
+                                                title: const Text('Error de Inicio de Sesión'),
+                                                content: Text(e.runtimeType.toString() == "_Exception"
+                                                    ? e.toString().substring(11)
+                                                    : e.toString()),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () => Navigator.pop(context, 'OK'),
+                                                    child: const Text('OK'),
+                                                  ),
+                                                ],
                                               ),
-                                            ),
+                                            );
+                                          }
+                                        },
+                                        text: 'Ingresar',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 44,
+                                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                          iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                          color: Color(0xFF07539D),
+                                          textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Colors.white,
+                                              ),
+                                          elevation: 2,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
                                           ),
-                                        ],
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
                                       ),
                                     ),
                                   ],
