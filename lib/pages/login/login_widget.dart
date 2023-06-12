@@ -1,3 +1,6 @@
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:platform_device_id/platform_device_id.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -17,6 +20,20 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   late LoginModel _model;
+  String? _deviceId;
+  String? _version;
+
+  void _getInfo() async {
+    // Get device id
+    String? _deviceId = await PlatformDeviceId.getDeviceId;
+    String? _version = (await PackageInfo.fromPlatform()).version;
+
+    // Update the UI
+    setState(() {
+      this._deviceId = _deviceId;
+      this._version = _version;
+    });
+  }
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
@@ -24,6 +41,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   void initState() {
     super.initState();
+    _getInfo();
     _model = createModel(context, () => LoginModel());
 
     _model.usuarioFieldController ??= TextEditingController();
@@ -347,7 +365,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Text(
-                        'ID: 04395295391\nVersion: 5.3.19',
+                        'ID: $_deviceId\nVersion: $_version',
+                        textAlign: TextAlign.right,
                         style: FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Outfit',
                             ),
