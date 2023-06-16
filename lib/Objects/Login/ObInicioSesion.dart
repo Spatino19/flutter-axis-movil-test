@@ -4,7 +4,7 @@ class ObInicioSesion {
   int? liIdAgente;
   String? lsNombres;
   int? liIdSesion;
-  List<LcCatalogos>? lcCatalogos;
+  List<Catalogo>? lcCatalogos;
   LoResultado? loResultado;
   String? lsIdUsuario;
 
@@ -25,9 +25,9 @@ class ObInicioSesion {
     lsNombres = json['lsNombres'];
     liIdSesion = json['liIdSesion'];
     if (json['lcCatalogos'] != null) {
-      lcCatalogos = <LcCatalogos>[];
+      lcCatalogos = <Catalogo>[];
       json['lcCatalogos'].forEach((v) {
-        lcCatalogos!.add(new LcCatalogos.fromJson(v));
+        lcCatalogos!.add(new Catalogo.fromJson(v));
       });
     }
     loResultado = json['loResultado'] != null ? new LoResultado.fromJson(json['loResultado']) : null;
@@ -52,7 +52,7 @@ class ObInicioSesion {
   }
 }
 
-class LcCatalogos {
+class Catalogo {
   int? liIdCatalogo;
   String? lsDescripcion;
   int? liOrden;
@@ -61,7 +61,7 @@ class LcCatalogos {
   String? lsWifi;
   int? liRegistros;
 
-  LcCatalogos(
+  Catalogo(
       {this.liIdCatalogo,
       this.lsDescripcion,
       this.liOrden,
@@ -70,7 +70,7 @@ class LcCatalogos {
       this.lsWifi,
       this.liRegistros});
 
-  LcCatalogos.fromJson(Map<String, dynamic> json) {
+  Catalogo.fromJson(Map<String, dynamic> json) {
     liIdCatalogo = json['liIdCatalogo'];
     lsDescripcion = json['lsDescripcion'];
     liOrden = json['liOrden'];

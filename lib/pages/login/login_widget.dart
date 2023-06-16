@@ -1,6 +1,8 @@
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:platform_device_id/platform_device_id.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../Objects/Login/Sesion.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -295,6 +297,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 _model.passwordFieldController.text);
 
                                             if (res.loResultado!.lsCodError == '0') {
+                                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                                              prefs.setString('USUARIO', _model.usuarioFieldController.text);
+                                              print(prefs.get('USUARIO'));
+                                              Sesion sesionActual = new Sesion(res);
+                                              prefs.setString('SESION', sesionActual.toString());
+
                                               context.pushNamed('HomePage');
                                             } else {
                                               throw Exception(
