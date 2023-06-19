@@ -22,6 +22,41 @@ class Sesion {
     this.mensaje = res.loResultado?.lsMensaje;
     this.usuario = res.lsIdUsuario;
   }
+
+  Sesion.fromJson(Map<String, dynamic> json) {
+    if (json['catalogos'] != null) {
+      catalogos = <Catalogo>[];
+      json['catalogos'].forEach((v) {
+        catalogos!.add(new Catalogo.fromJson(v));
+      });
+    }
+    funciones = json['funciones'];
+    idOficina = json['idOficina'];
+    idSesion = json['idSesion'];
+    codError = json['codError'];
+    usuario = json['usuario'];
+    mensaje = json['mensaje'];
+    agente = json['agente'];
+    empresa = json['agente'];
+    dispositivo = json['dispositivo'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.catalogos != null) {
+      data['catalogos'] = this.catalogos!.map((v) => v.toJson()).toList();
+    }
+    data['funciones'] = this.funciones;
+    data['idOficina'] = this.idOficina;
+    data['idSesion'] = this.idSesion;
+    data['codError'] = this.codError;
+    data['usuario'] = this.usuario;
+    data['mensaje'] = this.mensaje;
+    data['agente'] = this.agente;
+    data['empresa'] = this.empresa;
+    data['dispositivo'] = this.dispositivo;
+    return data;
+  }
 }
 
 class Empresa {}
