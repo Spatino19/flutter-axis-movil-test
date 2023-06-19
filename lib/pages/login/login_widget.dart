@@ -1,7 +1,7 @@
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'dart:developer';
 import '../../Objects/Login/Sesion.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -298,10 +298,13 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                                             if (res.loResultado!.lsCodError == '0') {
                                               SharedPreferences prefs = await SharedPreferences.getInstance();
+                                              prefs.setString('DEVICE_ID', _deviceId!);
+                                              prefs.setString('VERSION', _version!);
                                               prefs.setString('USUARIO', _model.usuarioFieldController.text);
-                                              print(prefs.get('USUARIO'));
                                               Sesion sesionActual = new Sesion(res);
-                                              prefs.setString('SESION', sesionActual.toString());
+                                              inspect(sesionActual);
+                                              prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
+                                              inspect(new Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
 
                                               context.pushNamed('HomePage');
                                             } else {
