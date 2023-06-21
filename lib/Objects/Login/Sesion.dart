@@ -1,3 +1,7 @@
+import '../Agente.dart';
+import '../Dispositivo.dart';
+import '../Empresa.dart';
+import '../Funcion.dart';
 import 'ObInicioSesion.dart';
 
 class Sesion {
@@ -58,11 +62,3 @@ class Sesion {
     return data;
   }
 }
-
-class Empresa {}
-
-class Agente {}
-
-class Dispositivo {}
-
-class Funcion {}
