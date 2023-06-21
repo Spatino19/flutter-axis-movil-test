@@ -1,16 +1,17 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_axis_movil/Requests/fetchLogin.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:developer';
-import '../../Objects/Login/Sesion.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_axis_movil/Requests/fetchLogin.dart';
+import '../../Objects/Login/Sesion.dart';
 import 'login_model.dart';
+
 export 'login_model.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -301,15 +302,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               prefs.setString('DEVICE_ID', _deviceId!);
                                               prefs.setString('VERSION', _version!);
                                               prefs.setString('USUARIO', _model.usuarioFieldController.text);
-                                              Sesion sesionActual = new Sesion(res);
+                                              Sesion sesionActual = Sesion(res);
                                               inspect(sesionActual);
                                               prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
-                                              inspect(new Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
+                                              inspect(Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
 
                                               context.pushNamed('HomePage');
                                             } else {
-                                              throw Exception(
-                                                  "${res.loResultado!.lsMensaje}.\n\nCódigo de error: ${res.loResultado!.lsCodError}.");
+                                              throw Exception("${res.loResultado!.lsMensaje}.\n\n"
+                                                  "Código de error: ${res.loResultado!.lsCodError}.");
                                             }
                                           } on Exception catch (e) {
                                             showDialog<String>(

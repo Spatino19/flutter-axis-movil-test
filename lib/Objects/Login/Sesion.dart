@@ -26,9 +26,9 @@ class Sesion {
   Sesion.fromJson(Map<String, dynamic> json) {
     if (json['catalogos'] != null) {
       catalogos = <Catalogo>[];
-      json['catalogos'].forEach((v) {
-        catalogos!.add(new Catalogo.fromJson(v));
-      });
+      for (final catalogoJson in json['catalogos']) {
+        catalogos!.add(Catalogo.fromJson(catalogoJson));
+      }
     }
     funciones = json['funciones'];
     idOficina = json['idOficina'];
@@ -42,7 +42,7 @@ class Sesion {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final data = Map<String, dynamic>();
     if (this.catalogos != null) {
       data['catalogos'] = this.catalogos!.map((v) => v.toJson()).toList();
     }

@@ -26,16 +26,16 @@ class ObInicioSesion {
     liIdSesion = json['liIdSesion'];
     if (json['lcCatalogos'] != null) {
       lcCatalogos = <Catalogo>[];
-      json['lcCatalogos'].forEach((v) {
-        lcCatalogos!.add(new Catalogo.fromJson(v));
-      });
+      for (final catalogoJson in json['lcCatalogos']) {
+        lcCatalogos!.add(Catalogo.fromJson(catalogoJson));
+      }
     }
-    loResultado = json['loResultado'] != null ? new LoResultado.fromJson(json['loResultado']) : null;
+    loResultado = json['loResultado'] != null ? LoResultado.fromJson(json['loResultado']) : null;
     lsIdUsuario = json['lsIdUsuario'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['lsIdEmpresa'] = this.lsIdEmpresa;
     data['lsIdOficina'] = this.lsIdOficina;
     data['liIdAgente'] = this.liIdAgente;
@@ -81,7 +81,7 @@ class Catalogo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final data = Map<String, dynamic>();
     data['liIdCatalogo'] = this.liIdCatalogo;
     data['lsDescripcion'] = this.lsDescripcion;
     data['liOrden'] = this.liOrden;
@@ -105,7 +105,7 @@ class LoResultado {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final data = Map<String, dynamic>();
     data['lsCodError'] = this.lsCodError;
     if (this.lsMensaje != null) {
       data['lsMensaje'] = this.lsMensaje;
