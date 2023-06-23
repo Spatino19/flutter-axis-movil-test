@@ -2,7 +2,7 @@ import '../Agente.dart';
 import '../Dispositivo.dart';
 import '../Empresa.dart';
 import '../Funcion.dart';
-import 'ObInicioSesion.dart';
+import 'RepuestaSesion.dart';
 
 class Sesion {
   List<Catalogo>? catalogos;
@@ -18,7 +18,7 @@ class Sesion {
   Empresa? empresa;
   Dispositivo? dispositivo;
 
-  Sesion(ObInicioSesion res) {
+  Sesion(RepuestaSesion res) {
     this.catalogos = res.lcCatalogos;
     this.codError = res.loResultado?.lsCodError;
     this.idOficina = res.lsIdOficina;

@@ -2,10 +2,10 @@ import 'dart:convert' as convert;
 import 'dart:convert';
 
 import 'package:flutter_axis_movil/Constants/Constants.dart';
-import 'package:flutter_axis_movil/Objects/Login/ObInicioSesion.dart';
+import 'package:flutter_axis_movil/Objects/Login/RepuestaSesion.dart';
 import 'package:http/http.dart' as http;
 
-Future<ObInicioSesion> fetchLogin(String psIdUsuario, String psClave) async {
+Future<RepuestaSesion> fetchLogin(String psIdUsuario, String psClave) async {
   var url = Uri.http(Constants.ipLogin, '/apiAppInfracciones/api/validarLogin', {'q': '{http}'});
   var body = convert.jsonEncode({"psIdUsuario": psIdUsuario, "psClave": psClave});
   Map<String, String> headers = {
@@ -18,7 +18,7 @@ Future<ObInicioSesion> fetchLogin(String psIdUsuario, String psClave) async {
 
   if (response.statusCode == 200) {
     var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
-    ObInicioSesion res = ObInicioSesion.fromJson(jsonResponse);
+    RepuestaSesion res = RepuestaSesion.fromJson(jsonResponse);
     return res;
   } else {
     throw Exception('No se ha podido iniciar sesión.\n\nEstado: ${response.statusCode}.');

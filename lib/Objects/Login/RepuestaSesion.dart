@@ -1,4 +1,5 @@
-class ObInicioSesion {
+
+class RepuestaSesion {
   String? lsIdEmpresa;
   String? lsIdOficina;
   int? liIdAgente;
@@ -8,7 +9,7 @@ class ObInicioSesion {
   LoResultado? loResultado;
   String? lsIdUsuario;
 
-  ObInicioSesion(
+  RepuestaSesion(
       {this.lsIdEmpresa,
       this.lsIdOficina,
       this.liIdAgente,
@@ -18,7 +19,7 @@ class ObInicioSesion {
       this.loResultado,
       this.lsIdUsuario});
 
-  ObInicioSesion.fromJson(Map<String, dynamic> json) {
+  RepuestaSesion.fromJson(Map<String, dynamic> json) {
     lsIdEmpresa = json['lsIdEmpresa'];
     lsIdOficina = json['lsIdOficina'];
     liIdAgente = json['liIdAgente'];
