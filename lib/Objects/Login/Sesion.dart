@@ -19,19 +19,19 @@ class Sesion {
   Dispositivo? dispositivo;
 
   Sesion(RepuestaSesion res) {
-    this.catalogos = res.lcCatalogos;
-    this.codError = res.loResultado?.lsCodError;
-    this.idOficina = res.lsIdOficina;
-    this.idSesion = res.liIdSesion;
-    this.mensaje = res.loResultado?.lsMensaje;
-    this.usuario = res.lsIdUsuario;
+    catalogos = res.lcCatalogos;
+    codError = res.loResultado?.lsCodError;
+    idOficina = res.lsIdOficina;
+    idSesion = res.liIdSesion;
+    mensaje = res.loResultado?.lsMensaje;
+    usuario = res.lsIdUsuario;
   }
 
   Sesion.fromJson(Map<String, dynamic> json) {
     if (json['catalogos'] != null) {
       catalogos = <Catalogo>[];
       for (final catalogoJson in json['catalogos']) {
-        catalogos!.add(Catalogo.fromJson(catalogoJson));
+        catalogos?.add(Catalogo.fromJson(catalogoJson));
       }
     }
     funciones = json['funciones'];
