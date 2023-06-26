@@ -1,4 +1,3 @@
-
 class RepuestaSesion {
   String? lsIdEmpresa;
   String? lsIdOficina;

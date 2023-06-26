@@ -1,3 +1,4 @@
+///Los datos de un agente (usuario).
 class Agente {
   String? idAgente;
   String? idUsuario;

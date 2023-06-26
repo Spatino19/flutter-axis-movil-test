@@ -1,3 +1,4 @@
+///Los datos del dispositivo donde está instalado AxisMovil.
 class Dispositivo {
   String? requiereApn;
   String? urlApn;

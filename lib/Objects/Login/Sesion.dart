@@ -4,6 +4,7 @@ import '../Empresa.dart';
 import '../Funcion.dart';
 import 'RepuestaSesion.dart';
 
+/// Los datos de una sesión en concreto desde que se inició sesión.
 class Sesion {
   List<Catalogo>? catalogos;
   List<Funcion>? funciones;
@@ -27,6 +28,7 @@ class Sesion {
     usuario = res.lsIdUsuario;
   }
 
+  ///Transfiere los datos de un JSON decodificado a esta [Sesion].
   Sesion.fromJson(Map<String, dynamic> json) {
     if (json['catalogos'] != null) {
       catalogos = <Catalogo>[];
@@ -45,6 +47,7 @@ class Sesion {
     dispositivo = json['dispositivo'];
   }
 
+  ///Una representación JSON (decodificado) de esta [Sesion].
   Map<String, dynamic> toJson() {
     final data = Map<String, dynamic>();
     if (this.catalogos != null) {
