@@ -4,7 +4,11 @@ import 'dart:convert';
 import 'package:flutter_axis_movil/Constants/Constants.dart';
 import 'package:flutter_axis_movil/Objects/Login/RepuestaSesion.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_axis_movil/pages/login/login_widget.dart';
 
+///Llama al API por REST para validar el inicio de sesion en la pantalla de [LoginWidget].
+///
+///Arroja una Excepción si el statusCode de la respuesta es 200.
 Future<RepuestaSesion> fetchLogin(String psIdUsuario, String psClave) async {
   var url = Uri.http(Constants.ipLogin, '/apiAppInfracciones/api/validarLogin', {'q': '{http}'});
   var body = convert.jsonEncode({"psIdUsuario": psIdUsuario, "psClave": psClave});
