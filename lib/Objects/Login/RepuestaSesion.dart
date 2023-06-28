@@ -1,3 +1,5 @@
+import '../Catalogo.dart';
+
 class RepuestaSesion {
   String? lsIdEmpresa;
   String? lsIdOficina;
@@ -48,47 +50,6 @@ class RepuestaSesion {
       data['loResultado'] = this.loResultado!.toJson();
     }
     data['lsIdUsuario'] = this.lsIdUsuario;
-    return data;
-  }
-}
-
-class Catalogo {
-  int? liIdCatalogo;
-  String? lsDescripcion;
-  int? liOrden;
-  String? lsFechaUltModificacion;
-  String? lsObligatorio;
-  String? lsWifi;
-  int? liRegistros;
-
-  Catalogo(
-      {this.liIdCatalogo,
-      this.lsDescripcion,
-      this.liOrden,
-      this.lsFechaUltModificacion,
-      this.lsObligatorio,
-      this.lsWifi,
-      this.liRegistros});
-
-  Catalogo.fromJson(Map<String, dynamic> json) {
-    liIdCatalogo = json['liIdCatalogo'];
-    lsDescripcion = json['lsDescripcion'];
-    liOrden = json['liOrden'];
-    lsFechaUltModificacion = json['lsFechaUltModificacion'];
-    lsObligatorio = json['lsObligatorio'];
-    lsWifi = json['lsWifi'];
-    liRegistros = json['liRegistros'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    data['liIdCatalogo'] = this.liIdCatalogo;
-    data['lsDescripcion'] = this.lsDescripcion;
-    data['liOrden'] = this.liOrden;
-    data['lsFechaUltModificacion'] = this.lsFechaUltModificacion;
-    data['lsObligatorio'] = this.lsObligatorio;
-    data['lsWifi'] = this.lsWifi;
-    data['liRegistros'] = this.liRegistros;
     return data;
   }
 }

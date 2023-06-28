@@ -1,4 +1,5 @@
 import '../Agente.dart';
+import '../Catalogo.dart';
 import '../Dispositivo.dart';
 import '../Empresa.dart';
 import '../Funcion.dart';
