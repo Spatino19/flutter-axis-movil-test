@@ -31,38 +31,38 @@ class Sesion {
 
   ///Transfiere los datos de un JSON decodificado a esta [Sesion].
   Sesion.fromJson(Map<String, dynamic> json) {
-    if (json['catalogos'] != null) {
+    if (json['lcCatalogos'] != null) {
       catalogos = <Catalogo>[];
-      for (final catalogoJson in json['catalogos']) {
+      for (final catalogoJson in json['lcCatalogos']) {
         catalogos?.add(Catalogo.fromJson(catalogoJson));
       }
     }
-    funciones = json['funciones'];
-    idOficina = json['idOficina'];
-    idSesion = json['idSesion'];
-    codError = json['codError'];
-    usuario = json['usuario'];
-    mensaje = json['mensaje'];
-    agente = json['agente'];
-    empresa = json['agente'];
-    dispositivo = json['dispositivo'];
+    funciones = json['lcFunciones'];
+    idOficina = json['lsIdOficina'];
+    idSesion = json['liIdSesion'];
+    codError = json['lsCodError'];
+    usuario = json['lsUsuario'];
+    mensaje = json['lsMensaje'];
+    agente = json['loAgente'];
+    empresa = json['loEmpresa'];
+    dispositivo = json['loDispositivo'];
   }
 
   ///Una representación JSON (decodificado) de esta [Sesion].
   Map<String, dynamic> toJson() {
     final data = Map<String, dynamic>();
     if (this.catalogos != null) {
-      data['catalogos'] = this.catalogos!.map((v) => v.toJson()).toList();
+      data['lcCatalogos'] = this.catalogos!.map((catalogo) => catalogo.toJson()).toList();
     }
-    data['funciones'] = this.funciones;
-    data['idOficina'] = this.idOficina;
-    data['idSesion'] = this.idSesion;
-    data['codError'] = this.codError;
-    data['usuario'] = this.usuario;
-    data['mensaje'] = this.mensaje;
-    data['agente'] = this.agente;
-    data['empresa'] = this.empresa;
-    data['dispositivo'] = this.dispositivo;
+    data['lcFunciones'] = this.funciones;
+    data['lsIdOficina'] = this.idOficina;
+    data['liIdSesion'] = this.idSesion;
+    data['lsCodError'] = this.codError;
+    data['lsUsuario'] = this.usuario;
+    data['lsMensaje'] = this.mensaje;
+    data['loAgente'] = this.agente;
+    data['loEmpresa'] = this.empresa;
+    data['loDispositivo'] = this.dispositivo;
     return data;
   }
 }
