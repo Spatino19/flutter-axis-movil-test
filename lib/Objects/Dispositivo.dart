@@ -19,4 +19,12 @@ class Dispositivo {
         mensaje: resultado?.lsMensaje,
         wifi: json['lsWifi']);
   }
+
+  Map<String, dynamic> toJson() => {
+        'requiereApn': requiereApn,
+        'urlApn': urlApn,
+        'codError': codError,
+        'mensaje': mensaje,
+        'wifi': wifi,
+      };
 }

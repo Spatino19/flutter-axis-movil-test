@@ -21,4 +21,17 @@ class Agente {
       this.idTipoRrhh,
       this.tipoRubro,
       this.codigoAgente});
+
+  Map<String, dynamic> toJson() => {
+        'idAgente': idAgente,
+        'idUsuario': idUsuario,
+        'cedula': cedula,
+        'nombre': nombre,
+        'firma': firma,
+        'firmaAscii': firmaAscii,
+        'etiquetaRrhh': etiquetaRrhh,
+        'idTipoRrhh': idTipoRrhh,
+        'tipoRubro': tipoRubro,
+        'codigoAgente': codigoAgente
+      };
 }

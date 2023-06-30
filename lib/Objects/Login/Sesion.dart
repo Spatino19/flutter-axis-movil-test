@@ -61,9 +61,9 @@ class Sesion {
     data['lsCodError'] = this.codError;
     data['lsUsuario'] = this.usuario;
     data['lsMensaje'] = this.mensaje;
-    data['loAgente'] = this.agente;
-    data['loEmpresa'] = this.empresa;
-    data['loDispositivo'] = this.dispositivo;
+    data['loAgente'] = this.agente?.toJson();
+    data['loEmpresa'] = this.empresa?.toJson();
+    data['loDispositivo'] = this.dispositivo?.toJson();
     return data;
   }
 }
