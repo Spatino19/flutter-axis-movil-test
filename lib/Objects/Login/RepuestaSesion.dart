@@ -1,4 +1,5 @@
 import '../Catalogo.dart';
+import '../consultas_rest/Resultado.dart';
 
 class RepuestaSesion {
   String? lsIdEmpresa;
@@ -7,7 +8,7 @@ class RepuestaSesion {
   String? lsNombres;
   int? liIdSesion;
   List<Catalogo>? lcCatalogos;
-  LoResultado? loResultado;
+  Resultado? loResultado;
   String? lsIdUsuario;
 
   RepuestaSesion(
@@ -32,7 +33,7 @@ class RepuestaSesion {
         lcCatalogos!.add(Catalogo.fromJson(catalogoJson));
       }
     }
-    loResultado = json['loResultado'] != null ? LoResultado.fromJson(json['loResultado']) : null;
+    loResultado = json['loResultado'] != null ? Resultado.fromJson(json['loResultado']) : null;
     lsIdUsuario = json['lsIdUsuario'];
   }
 
@@ -50,27 +51,6 @@ class RepuestaSesion {
       data['loResultado'] = this.loResultado!.toJson();
     }
     data['lsIdUsuario'] = this.lsIdUsuario;
-    return data;
-  }
-}
-
-class LoResultado {
-  String? lsCodError;
-  String? lsMensaje;
-
-  LoResultado({this.lsCodError, this.lsMensaje});
-
-  LoResultado.fromJson(Map<String, dynamic> json) {
-    lsCodError = json['lsCodError'];
-    lsMensaje = json['lsMensaje'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    data['lsCodError'] = this.lsCodError;
-    if (this.lsMensaje != null) {
-      data['lsMensaje'] = this.lsMensaje;
-    }
     return data;
   }
 }

@@ -302,9 +302,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               prefs.setString('DEVICE_ID', _deviceId!);
                                               prefs.setString('VERSION', _version!);
                                               prefs.setString('USUARIO', _model.usuarioFieldController.text);
+
                                               Sesion sesionActual = Sesion(res);
+                                              // prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
+
+                                              //debug
                                               inspect(sesionActual);
-                                              prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
                                               inspect(Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
 
                                               context.pushNamed('HomePage');

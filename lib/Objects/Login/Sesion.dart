@@ -26,7 +26,8 @@ class Sesion {
     idOficina = res.lsIdOficina;
     idSesion = res.liIdSesion;
     mensaje = res.loResultado?.lsMensaje;
-    usuario = res.lsIdUsuario;
+    empresa = Empresa(res.lsIdEmpresa);
+    agente = Agente(idAgente: res.liIdAgente, nombre: res.lsNombres, idUsuario: res.lsIdUsuario);
   }
 
   ///Transfiere los datos de un JSON decodificado a esta [Sesion].

@@ -14,5 +14,5 @@ class Empresa {
   String? etiquetaOrd;
   Oficina? oficinas;
 
-  Empresa(this.mensaje1, this.mensaje2, this.mensajeOrd1, this.mensajeOrd2);
+  Empresa(this.idEmpresa);
 }
