@@ -26,7 +26,7 @@ class Sesion {
     idOficina = res.lsIdOficina;
     idSesion = res.liIdSesion;
     mensaje = res.loResultado?.lsMensaje;
-    empresa = Empresa(res.lsIdEmpresa);
+    empresa = Empresa(idEmpresa: res.lsIdEmpresa);
     agente = Agente(idAgente: res.liIdAgente, nombre: res.lsNombres, idUsuario: res.lsIdUsuario);
   }
 
@@ -44,9 +44,9 @@ class Sesion {
     codError = json['lsCodError'];
     usuario = json['lsUsuario'];
     mensaje = json['lsMensaje'];
-    agente = json['loAgente'];
-    empresa = json['loEmpresa'];
-    dispositivo = json['loDispositivo'];
+    agente = json['loAgente'] != null ? Agente.fromJson(json['loAgente']) : null;
+    empresa = json['loEmpresa'] != null ? Empresa.fromJson(json['loEmpresa']) : null;
+    dispositivo = json['loDispositivo'] != null ? Dispositivo.fromJson(json['loDispositivo']) : null;
   }
 
   ///Una representación JSON (decodificado) de esta [Sesion].

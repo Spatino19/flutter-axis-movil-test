@@ -309,7 +309,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                                               //debug
                                               inspect(sesionActual);
-                                              // inspect(Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
+                                              inspect(Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
 
                                               context.pushNamed('HomePage');
                                             } else {

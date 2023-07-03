@@ -22,6 +22,17 @@ class Agente {
       this.tipoRubro,
       this.codigoAgente});
 
+  factory Agente.fromJson(Map<String, dynamic> json) => Agente(
+      idAgente: json['idAgente'],
+      idUsuario: json['idUsuario'],
+      cedula: json['cedula'],
+      nombre: json['nombre'],
+      firma: json['firma'],
+      etiquetaRrhh: json['etiquetaRrhh'],
+      idTipoRrhh: json['idTipoRrhh'],
+      tipoRubro: json['tipoRubro'],
+      codigoAgente: json['codigoAgente']);
+
   Map<String, dynamic> toJson() => {
         'idAgente': idAgente,
         'idUsuario': idUsuario,

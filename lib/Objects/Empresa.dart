@@ -14,7 +14,33 @@ class Empresa {
   String? etiquetaOrd;
   Oficina? oficinas;
 
-  Empresa(this.idEmpresa);
+  Empresa(
+      {required this.idEmpresa,
+      this.nombreEmpresa,
+      this.mensaje1,
+      this.mensaje2,
+      this.mensajeOrd1,
+      this.mensajeOrd2,
+      this.logo,
+      this.logoBn,
+      this.logoAscii,
+      this.etiquetaCoip,
+      this.etiquetaOrd,
+      this.oficinas});
+
+  factory Empresa.fromJson(Map<String, dynamic> json) => Empresa(
+      idEmpresa: json['idEmpresa'],
+      nombreEmpresa: json['nombreEmpresa'],
+      mensaje1: json['mensaje1'],
+      mensaje2: json['mensaje2'],
+      mensajeOrd1: json['mensajeOrd1'],
+      mensajeOrd2: json['mensajeOrd2'],
+      logo: json['logo'],
+      logoBn: json['logoBn'],
+      logoAscii: json['logoAscii'],
+      etiquetaCoip: json['etiquetaCoip'],
+      etiquetaOrd: json['etiquetaOrd'],
+      oficinas: json['oficinas']);
 
   Map<String, dynamic> toJson() => {
         'idEmpresa': idEmpresa,
