@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_axis_movil/Requests/fetchLogin.dart';
+import 'package:flutter_axis_movil/Requests/RESTRequest.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -294,9 +294,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             return;
                                           }
                                           try {
-                                            var res = await fetchLogin(_model.usuarioFieldController.text,
+                                            var res = await RESTRequest().validarLogin(
+                                                _model.usuarioFieldController.text,
                                                 _model.passwordFieldController.text);
-
                                             if (res.loResultado!.lsCodError == '0') {
                                               SharedPreferences prefs = await SharedPreferences.getInstance();
                                               prefs.setString('DEVICE_ID', _deviceId!);
@@ -304,6 +304,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               prefs.setString('USUARIO', _model.usuarioFieldController.text);
 
                                               Sesion sesionActual = Sesion(res);
+                                              if (sesionActual.empresa?.idEmpresa != null) {
+                                                sesionActual.dispositivo = await RESTRequest().retornarDatosDispositivo(
+                                                    psIdEmpresa: sesionActual.empresa?.idEmpresa,
+                                                    psIdDispositivo: _deviceId);
+                                              }
+
                                               prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
                                               print(prefs.get("SESION"));
 
@@ -317,21 +323,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   "Código de error: ${res.loResultado!.lsCodError}.");
                                             }
                                           } on Exception catch (e) {
-                                            showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) => AlertDialog(
-                                                title: const Text('Error de Inicio de Sesión'),
-                                                content: Text(e.runtimeType.toString() == "_Exception"
-                                                    ? e.toString().substring(11)
-                                                    : e.toString()),
-                                                actions: <Widget>[
-                                                  TextButton(
-                                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                                    child: const Text('OK'),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
+                                            mostrarDialogoError(context, e);
                                           }
                                         },
                                         text: 'Ingresar',
@@ -394,6 +386,22 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void mostrarDialogoError(BuildContext context, Exception e) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Error de Inicio de Sesión'),
+        content: Text(e.runtimeType.toString() == "_Exception" ? e.toString().substring(11) : e.toString()),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: const Text('OK'),
+          ),
+        ],
       ),
     );
   }
