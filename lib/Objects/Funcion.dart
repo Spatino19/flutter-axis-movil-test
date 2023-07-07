@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Funcion {
   String? idFuncion;
   String? descripcion;

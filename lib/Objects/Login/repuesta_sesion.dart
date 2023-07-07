@@ -1,5 +1,5 @@
-import '../Catalogo.dart';
-import '../consultas_rest/Resultado.dart';
+import '../catalogo.dart';
+import '../consultas_rest/resultado.dart';
 
 class RepuestaSesion {
   String? lsIdEmpresa;

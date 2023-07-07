@@ -1,11 +1,9 @@
-import 'package:flutter_axis_movil/Requests/RESTRequest.dart';
-
-import '../Agente.dart';
-import '../Catalogo.dart';
-import '../Dispositivo.dart';
-import '../Empresa.dart';
-import '../Funcion.dart';
-import 'RepuestaSesion.dart';
+import '../agente.dart';
+import '../catalogo.dart';
+import '../dispositivo.dart';
+import '../empresa.dart';
+import '../funcion.dart';
+import 'repuesta_sesion.dart';
 
 /// Los datos de una sesión en concreto desde que se inició sesión.
 class Sesion {

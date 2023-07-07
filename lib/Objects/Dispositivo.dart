@@ -1,4 +1,4 @@
-import 'consultas_rest/Resultado.dart';
+import 'consultas_rest/resultado.dart';
 
 ///Los datos del dispositivo donde está instalado AxisMovil.
 class Dispositivo {

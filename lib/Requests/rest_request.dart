@@ -1,9 +1,9 @@
 import 'dart:convert' as convert;
 import 'dart:convert';
 
-import 'package:flutter_axis_movil/utils/Constants.dart';
-import 'package:flutter_axis_movil/Objects/Dispositivo.dart';
-import 'package:flutter_axis_movil/Objects/Login/RepuestaSesion.dart';
+import 'package:flutter_axis_movil/utils/constants.dart';
+import 'package:flutter_axis_movil/objects/dispositivo.dart';
+import 'package:flutter_axis_movil/objects/login/repuesta_sesion.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_axis_movil/pages/login/login_widget.dart';
 

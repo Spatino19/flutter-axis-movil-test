@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_axis_movil/Requests/RESTRequest.dart';
+import 'package:flutter_axis_movil/requests/rest_request.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '../../Objects/Login/Sesion.dart';
+import '../../objects/login/sesion.dart';
 import 'login_model.dart';
 
 export 'login_model.dart';

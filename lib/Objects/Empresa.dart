@@ -1,4 +1,4 @@
-import 'Oficina.dart';
+import 'oficina.dart';
 
 class Empresa {
   String? idEmpresa;
