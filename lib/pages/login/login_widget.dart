@@ -294,8 +294,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             return;
                                           }
                                           try {
-                                            var res = await RESTRequest().validarLogin(
-                                                _model.usuarioFieldController.text,
+                                            var res = await RESTRequest.validarLogin(_model.usuarioFieldController.text,
                                                 _model.passwordFieldController.text);
                                             if (res.loResultado!.lsCodError == '0') {
                                               SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -305,15 +304,15 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                                               Sesion sesionActual = Sesion(res);
                                               if (sesionActual.empresa?.idEmpresa != null) {
-                                                sesionActual.dispositivo = await RESTRequest().retornarDatosDispositivo(
+                                                sesionActual.dispositivo = await RESTRequest.retornarDatosDispositivo(
                                                     psIdEmpresa: sesionActual.empresa?.idEmpresa,
                                                     psIdDispositivo: _deviceId);
                                               }
 
                                               prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
-                                              print(prefs.get("SESION"));
 
                                               //debug
+                                              // print(prefs.get("SESION"));
                                               inspect(sesionActual);
                                               inspect(Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
 
