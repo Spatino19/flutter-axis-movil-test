@@ -20,7 +20,7 @@ class Sesion {
   Empresa? empresa;
   Dispositivo? dispositivo;
 
-  late final DateTime? fecha;
+  DateTime? _fecha;
 
   Sesion(RepuestaSesion res) {
     catalogos = res.lcCatalogos;
@@ -30,8 +30,10 @@ class Sesion {
     mensaje = res.loResultado?.lsMensaje;
     empresa = Empresa(idEmpresa: res.lsIdEmpresa);
     agente = Agente(idAgente: res.liIdAgente, nombre: res.lsNombres, idUsuario: res.lsIdUsuario);
-    fecha = DateTime.now();
+    _fecha = DateTime.now().toUtc();
   }
+
+  DateTime? get fecha => _fecha;
 
   ///Transfiere los datos de un JSON decodificado a esta [Sesion].
   Sesion.fromJson(Map<String, dynamic> json) {
@@ -50,7 +52,7 @@ class Sesion {
     agente = json['loAgente'] != null ? Agente.fromJson(json['loAgente']) : null;
     empresa = json['loEmpresa'] != null ? Empresa.fromJson(json['loEmpresa']) : null;
     dispositivo = json['loDispositivo'] != null ? Dispositivo.fromJson(json['loDispositivo']) : null;
-    fecha = DateTime.parse(json['loFecha']);
+    _fecha = DateTime.parse(json['loFecha']);
   }
 
   ///Una representación JSON (decodificado) de esta [Sesion].
@@ -68,7 +70,7 @@ class Sesion {
     data['loAgente'] = this.agente?.toJson();
     data['loEmpresa'] = this.empresa?.toJson();
     data['loDispositivo'] = this.dispositivo?.toJson();
-    data['loFecha'] = this.fecha.toString();
+    data['loFecha'] = this._fecha.toString();
     return data;
   }
 }
