@@ -1,3 +1,4 @@
+import '../../flutter_flow/flutter_flow_util.dart';
 import '../agente.dart';
 import '../catalogo.dart';
 import '../dispositivo.dart';
@@ -30,7 +31,7 @@ class Sesion {
     mensaje = res.loResultado?.lsMensaje;
     empresa = Empresa(idEmpresa: res.lsIdEmpresa);
     agente = Agente(idAgente: res.liIdAgente, nombre: res.lsNombres, idUsuario: res.lsIdUsuario);
-    _fecha = DateTime.now().toUtc();
+    _fecha = DateFormat("E, d MMM yyyy H:m:s 'GMT'").parseStrict(res.lsFecha!, true);
   }
 
   DateTime? get fecha => _fecha;

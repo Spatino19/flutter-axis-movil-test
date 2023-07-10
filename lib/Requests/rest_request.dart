@@ -17,16 +17,17 @@ class RESTRequest {
     'Accept': 'application/json',
   };
   static String? _body;
+  static http.Response? _response;
 
   static Future<Map<String, dynamic>> _consultaRest(Uri url, String body,
       {String descripcion = "hacer la consulta", Map<String, String> headers = _headers}) async {
     //Usa los headers por defecto
-    final response = await http.post(url, headers: headers, body: body);
+    _response = await http.post(url, headers: headers, body: body);
 
-    if (response.statusCode == 200) {
-      return convert.jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+    if (_response?.statusCode == 200) {
+      return convert.jsonDecode(utf8.decode(_response!.bodyBytes)) as Map<String, dynamic>;
     } else {
-      throw Exception('No se ha podido $descripcion.\n\nEstado: ${response.statusCode}.');
+      throw Exception('No se ha podido $descripcion.\n\nEstado: ${_response?.statusCode}.');
     }
   }
 
@@ -37,6 +38,7 @@ class RESTRequest {
 
     var jsonResponse = _consultaRest(_url!, _body!, descripcion: "iniciar sesion");
     RepuestaSesion res = RepuestaSesion.fromJson(await jsonResponse);
+    res.lsFecha = _response?.headers['date'];
     return res;
   }
 

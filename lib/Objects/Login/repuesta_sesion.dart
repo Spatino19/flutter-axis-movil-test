@@ -10,6 +10,7 @@ class RepuestaSesion {
   List<Catalogo>? lcCatalogos;
   Resultado? loResultado;
   String? lsIdUsuario;
+  String? lsFecha;
 
   RepuestaSesion(
       {this.lsIdEmpresa,
