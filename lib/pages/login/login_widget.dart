@@ -312,14 +312,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               }
 
                                               //Comparacion de fechas para ver si se necesita actualizar la sesion
-                                              if (prefs.get('SESION') != null) {
-                                                var sesionAnterior =
-                                                    Sesion.fromJson(jsonDecode(prefs.get("SESION").toString()));
+                                              var sesionAnterior =
+                                                  Sesion.fromJson(jsonDecode(prefs.get("SESION").toString()));
 
-                                                if (!DateUtils.isSameDay(sesionAnterior.fecha, sesionActual.fecha)) {
-                                                  prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
-                                                }
-                                              } else {
+                                              if ((prefs.get('SESION') == null) ||
+                                                  !DateUtils.isSameDay(sesionAnterior.fecha, sesionActual.fecha)) {
                                                 prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
                                               }
 
