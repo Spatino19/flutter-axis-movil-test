@@ -294,6 +294,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             return;
                                           }
                                           try {
+                                            //Manda request de valiacion de inicio de sesion
                                             var res = await RESTRequest.validarLogin(_model.usuarioFieldController.text,
                                                 _model.passwordFieldController.text);
                                             if (res.loResultado!.lsCodError == '0') {
@@ -302,6 +303,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               prefs.setString('VERSION', _version!);
                                               prefs.setString('USUARIO', _model.usuarioFieldController.text);
 
+                                              //Devuelve los datos del usuario
                                               Sesion sesionActual = Sesion(res);
                                               if (sesionActual.empresa?.idEmpresa != null) {
                                                 sesionActual.dispositivo = await RESTRequest.retornarDatosDispositivo(
@@ -309,7 +311,17 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     psIdDispositivo: _deviceId);
                                               }
 
-                                              prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
+                                              //Comparacion de fechas para ver si se necesita actualizar la sesion
+                                              if (prefs.get('SESION') != null) {
+                                                var sesionAnterior =
+                                                    Sesion.fromJson(jsonDecode(prefs.get("SESION").toString()));
+
+                                                if (!DateUtils.isSameDay(sesionAnterior.fecha, sesionActual.fecha)) {
+                                                  prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
+                                                }
+                                              } else {
+                                                prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
+                                              }
 
                                               //debug
                                               // print(prefs.get("SESION"));

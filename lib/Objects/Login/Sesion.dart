@@ -31,7 +31,7 @@ class Sesion {
     mensaje = res.loResultado?.lsMensaje;
     empresa = Empresa(idEmpresa: res.lsIdEmpresa);
     agente = Agente(idAgente: res.liIdAgente, nombre: res.lsNombres, idUsuario: res.lsIdUsuario);
-    _fecha = DateFormat("E, d MMM yyyy H:m:s 'GMT'").parseStrict(res.lsFecha!, true);
+    _fecha = DateFormat("E, d MMM yyyy H:m:s 'GMT'").parseStrict(res.lsFecha!, true).toLocal();
   }
 
   DateTime? get fecha => _fecha;
