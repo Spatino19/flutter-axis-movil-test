@@ -303,7 +303,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               prefs.setString('VERSION', _version!);
                                               prefs.setString('USUARIO', _model.usuarioFieldController.text);
 
-                                              //Devuelve los datos del usuario
+                                              //Devuelve los datos del dispositivo
                                               Sesion sesionActual = Sesion(res);
                                               if (sesionActual.empresa?.idEmpresa != null) {
                                                 sesionActual.dispositivo = await RESTRequest.retornarDatosDispositivo(
