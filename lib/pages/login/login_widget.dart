@@ -311,19 +311,26 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     psIdDispositivo: _deviceId);
                                               }
 
-                                              //Comparacion de fechas para ver si se necesita actualizar la sesion
-                                              var sesionAnterior =
+                                              agregarSesionPref() =>
+                                                  prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
+
+                                              obtenerSesionPref() =>
                                                   Sesion.fromJson(jsonDecode(prefs.get("SESION").toString()));
 
-                                              if ((prefs.get('SESION') == null) ||
-                                                  !DateUtils.isSameDay(sesionAnterior.fecha, sesionActual.fecha)) {
-                                                prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
+                                              //Comparacion de fechas para ver si se necesita actualizar la sesion
+                                              if (prefs.get('SESION') != null) {
+                                                var sesionAnterior = obtenerSesionPref();
+                                                if (!DateUtils.isSameDay(sesionAnterior.fecha, sesionActual.fecha)) {
+                                                  agregarSesionPref();
+                                                }
+                                              } else {
+                                                agregarSesionPref();
                                               }
 
                                               //debug
                                               // print(prefs.get("SESION"));
                                               inspect(sesionActual);
-                                              inspect(Sesion.fromJson(jsonDecode(prefs.get("SESION").toString())));
+                                              inspect(obtenerSesionPref());
 
                                               context.pushNamed('HomePage');
                                             } else {
