@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'consultas_rest/resultado.dart';
 
 ///Los datos del dispositivo donde está instalado AxisMovil.
@@ -12,19 +14,20 @@ class Dispositivo {
 
   factory Dispositivo.fromJson(Map<String, dynamic> json) {
     var resultado = json['loResultado'] != null ? Resultado.fromJson(json['loResultado']) : null;
+    print(resultado?.lsCodError);
     return Dispositivo(
         requiereApn: json['lsRequiereApn'],
         urlApn: json['lsUrlApn'],
-        codError: resultado?.lsCodError,
-        mensaje: resultado?.lsMensaje,
+        codError: resultado?.lsCodError ?? json['lsCodError'],
+        mensaje: resultado?.lsMensaje ?? json['lsMensaje'],
         wifi: json['lsWifi']);
   }
 
   Map<String, dynamic> toJson() => {
-        'requiereApn': requiereApn,
-        'urlApn': urlApn,
-        'codError': codError,
-        'mensaje': mensaje,
-        'wifi': wifi,
+        'lsRequiereApn': requiereApn,
+        'lsUrlApn': urlApn,
+        'lsCodError': codError,
+        'lsMensaje': mensaje,
+        'lsWifi': wifi,
       };
 }

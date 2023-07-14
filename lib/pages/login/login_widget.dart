@@ -303,13 +303,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               prefs.setString('VERSION', _version!);
                                               prefs.setString('USUARIO', _model.usuarioFieldController.text);
 
-                                              //Devuelve los datos del dispositivo
                                               Sesion sesionActual = Sesion(res);
-                                              if (sesionActual.empresa?.idEmpresa != null) {
-                                                sesionActual.dispositivo = await RESTRequest.retornarDatosDispositivo(
-                                                    psIdEmpresa: sesionActual.empresa?.idEmpresa,
-                                                    psIdDispositivo: _deviceId);
-                                              }
 
                                               agregarSesionPref() =>
                                                   prefs.setString('SESION', jsonEncode(sesionActual.toJson()));
@@ -317,13 +311,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               obtenerSesionPref() =>
                                                   Sesion.fromJson(jsonDecode(prefs.get("SESION").toString()));
 
+                                              //Devuelve los datos del dispositivo
+                                              Future<void> actualizarDiapositivo() async {
+                                                if (sesionActual.empresa?.idEmpresa != null) {
+                                                  sesionActual.dispositivo = await RESTRequest.retornarDatosDispositivo(
+                                                      psIdEmpresa: sesionActual.empresa?.idEmpresa,
+                                                      psIdDispositivo: _deviceId);
+                                                }
+                                              }
+
                                               //Comparacion de fechas para ver si se necesita actualizar la sesion
                                               if (prefs.get('SESION') != null) {
                                                 var sesionAnterior = obtenerSesionPref();
+
                                                 if (!DateUtils.isSameDay(sesionAnterior.fecha, sesionActual.fecha)) {
+                                                  var fechaDisp = DateFormat("dd-MM-yyyy")
+                                                      .add_Hm()
+                                                      .parse(sesionActual.catalogos![7].fechaUltModificacion!);
+                                                  if (fechaDisp.isAfter(sesionActual.fecha!)) actualizarDiapositivo();
                                                   agregarSesionPref();
                                                 }
                                               } else {
+                                                await actualizarDiapositivo();
                                                 agregarSesionPref();
                                               }
 
