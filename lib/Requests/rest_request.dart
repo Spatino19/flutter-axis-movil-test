@@ -54,11 +54,3 @@ class RESTRequest {
     return res;
   }
 }
-
-void main() async {
-  try {
-    print((await RESTRequest.validarLogin("***REMOVED***", "***REMOVED***")).lsNombres);
-  } on Exception catch (e) {
-    print(e);
-  }
-}
